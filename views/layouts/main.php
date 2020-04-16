@@ -40,10 +40,11 @@ AppAsset::register($this);
         ['label' => Yii::t('app', 'На главную'), 'url' => ['/site/index']],
     ];
 
-    if (Yii::$app->user->isGuest || !Yii::$app->user->identity->isAdmin()) {
+    if (Yii::$app->user->isGuest) {
         $items[] = ['label' => Yii::t('app', 'Номера'), 'url' => ['/rooms']];
     } else {
-        $items[] = ['label' => Yii::t('app', 'Номера'), 'url' => ['/rooms']];
+        $items[] = ['label' => Yii::t('app', 'Справочник номеров'), 'url' => ['/admin/rooms']];
+        $items[] = ['label' => Yii::t('app', 'Забронированные номера'), 'url' => ['/admin/rooms/booking']];
     }
 
     if (Yii::$app->user->isGuest) {
@@ -63,25 +64,6 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $items,
     ]);
-//    echo Nav::widget([
-//        'options' => ['class' => 'navbar-nav navbar-right'],
-//        'items' => [
-//            ['label' => Yii::t('app', 'На главную'), 'url' => ['/site/index']],
-//            ['label' => Yii::t('app', 'Номера'), 'url' => ['/rooms']],
-//            Yii::$app->user->isGuest ? (
-//                ['label' => Yii::t('app', 'Войти'), 'url' => ['/site/login']]
-//            ) : (
-//                '<li>'
-//                . Html::beginForm(['/site/logout'], 'post')
-//                . Html::submitButton(
-//                    'Logout (' . Yii::$app->user->identity->username . ')',
-//                    ['class' => 'btn btn-link logout']
-//                )
-//                . Html::endForm()
-//                . '</li>'
-//            )
-//        ],
-//    ]);
     NavBar::end();
     ?>
 

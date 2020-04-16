@@ -101,12 +101,4 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     {
         return $this->password === $password;
     }
-
-    /**
-     * @return bool
-     */
-    public function isAdmin()
-    {
-        return $this->username == 'admin';
-    }
 }

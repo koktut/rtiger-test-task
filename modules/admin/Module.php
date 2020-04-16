@@ -3,10 +3,33 @@
 namespace app\modules\admin;
 
 use Yii;
+use yii\filters\AccessControl;
 
+/**
+ * Class Module
+ * @package app\modules\admin
+ */
 class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'app\modules\admin\controllers';
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
 
     /**
      * {@inheritdoc}
